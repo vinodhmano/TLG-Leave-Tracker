@@ -1,0 +1,11 @@
+1. Create leave model
+2. leave model should have 
+        start date, 
+        end date, 
+        number of business days, 
+        number of hours,
+        leave type
+        approved
+        applied in ESA
+3. Create a endpoint for post leaves
+4. Create a leave object and save to database

@@ -30,7 +30,7 @@ app.get('/leaves', (req, res) => {
 })
 
 app.post('/leaves', (req, res) => {
-    const user = new Leave({
+    const leave = new Leave({
         startDate: '02/18/2020',
         endDate: '03/07/2020',
         numberOfBusinessDays: 15,
@@ -39,7 +39,7 @@ app.post('/leaves', (req, res) => {
         approvedStatus: 'Approved',
         appliedInESA: 'Yes'
     })
-    user.save((error, data) => {
+    leave.save((error, data) => {
         if (error) {
             return res.send(error)
         }

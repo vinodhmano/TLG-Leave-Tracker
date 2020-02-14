@@ -5,24 +5,34 @@ const Leave = require('./models/leave')
 
 const app = express()
 
+app.use(express.json())
+
+//Get all user
 app.get('/users', (req, res) => {
-    res.send("Working")
+    User.find({}).then( (users)=> {
+        res.send(users)
+    }).catch( (e) => {
+        res.send(e)
+    })
+})
+
+//Get user by id
+app.get('/users/:id', (req, res) => {
+    const id = req.params.id
+    User.findById(id).then( (user) => {
+        res.send(user)
+    }).catch( (e) => {
+        res.send(e)
+    })
 })
 
 app.post('/users', (req, res) => {
-    const user = new User({
-        id: 446343,
-        firstname: 'Kumar',
-        lastname: 'Mariyappan',
-        supervisor: 'Kannan'
+    const user = new User(req.body)
+    user.save().then( (_user) => {
+        res.send(_user)
+    }).catch( (e) => {
+        res.send(e)
     })
-    user.save( (error, data) => {
-        if(error){
-            return res.send(error)
-        }
-        res.send(data)
-    })
-
 })
 
 app.get('/leaves', (req, res) => {
@@ -39,13 +49,18 @@ app.post('/leaves', (req, res) => {
         approvedStatus: 'Approved',
         appliedInESA: 'Yes'
     })
+
     leave.save((error, data) => {
         if (error) {
             return res.send(error)
         }
-        res.send(data)
-    })
 
+        res.send("Inserted the leave")
+    })
+})
+
+app.post('/test', (req,res) => {
+    console.log(req.body)
 })
 
 app.listen(4444, () => {

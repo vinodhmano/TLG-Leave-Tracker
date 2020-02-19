@@ -1,88 +1,28 @@
 const express = require('express')
 require('./database/dbController')
-const User = require('./models/user')
-const Leave = require('./models/leave')
+const userRouter = require('./routers/userRouter')
+const leaveRouter = require('./routers/leaveRouter')
+const hbs = require('hbs')
 
 const app = express()
+const viewFolder = '/Users/admin/node/TLG-Leave-Tracker/templates/views'
+const partialFolder = '/Users/admin/node/TLG-Leave-Tracker/templates/partials'
 
 app.use(express.json())
+app.use(userRouter)
+app.use(leaveRouter)
 
-//Get all user
-app.get('/users', (req, res) => {
-    User.find({}).then( (users)=> {
-        res.send(users)
-    }).catch( (e) => {
-        res.send(e)
-    })
+app.set('view engine', 'hbs')
+app.set('views', viewFolder)
+hbs.registerPartials(partialFolder)
+
+
+app.get('/index', (req, res) => {
+    res.render('index')
 })
 
-//Get user by id
-app.get('/users/:id', (req, res) => {
-    const id = req.params.id
-    User.findById(id).then( (user) => {
-        res.send(user)
-    }).catch( (e) => {
-        res.send(e)
-    })
-})
-
-app.post('/users', (req, res) => {
-    const user = new User(req.body)
-    user.save().then( (_user) => {
-        res.send(_user)
-    }).catch( (e) => {
-        res.send(e)
-    })
-})
-
-// app.get('/leaves', (req, res) => {
-//     res.send("Leave Working")
-// })
-
-// Get all leaves using promise
-app.get('/leaves', (req, res) => {
-    Leave.find({}).then( (leaves) => {
-        res.send(leaves)
-    }).catch( (e) => {
-        res.send(e)
-    })
-})
-
-// Get by Id using promise
-app.get('/leave/:id', (req, res) => {
-    const id = req.params.id
-    Leave.findById(id).then( (_leave) => {
-        res.send(_leave)
-    }).catch( (e) => {
-        res.send(e)
-    })
-})
-
-app.post('/leaves', (req, res) => {
-    const leave = new Leave({
-        startDate: '02/18/2020',
-        endDate: '03/07/2020',
-        numberOfBusinessDays: 15,
-        numberOfHours: 120,
-        leaveType: 'Vacation',
-        approvedStatus: 'Approved',
-        appliedInESA: 'Yes'
-    })
-    
-    // Using CALL BACK
-    // leave.save((error, data) => {
-    //     if (error) {
-    //         return res.send(error)
-    //     }
-    //     res.send("Inserted the leave")
-    // })
-
-    // Using Promise
-    leave.save().then( (_leave) => {
-        res.send(_user)
-    }).catch( (e) => {
-        res.send(e)
-    })
+app.get('/help', (req, res) => {
+    res.render('help')
 })
 
 app.post('/test', (req,res) => {

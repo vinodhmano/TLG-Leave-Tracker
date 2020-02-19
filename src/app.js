@@ -35,8 +35,27 @@ app.post('/users', (req, res) => {
     })
 })
 
+// app.get('/leaves', (req, res) => {
+//     res.send("Leave Working")
+// })
+
+// Get all leaves using promise
 app.get('/leaves', (req, res) => {
-    res.send("Leave Working")
+    Leave.find({}).then( (leaves) => {
+        res.send(leaves)
+    }).catch( (e) => {
+        res.send(e)
+    })
+})
+
+// Get by Id using promise
+app.get('/leave/:id', (req, res) => {
+    const id = req.params.id
+    Leave.findById(id).then( (_leave) => {
+        res.send(_leave)
+    }).catch( (e) => {
+        res.send(e)
+    })
 })
 
 app.post('/leaves', (req, res) => {
@@ -49,13 +68,20 @@ app.post('/leaves', (req, res) => {
         approvedStatus: 'Approved',
         appliedInESA: 'Yes'
     })
+    
+    // Using CALL BACK
+    // leave.save((error, data) => {
+    //     if (error) {
+    //         return res.send(error)
+    //     }
+    //     res.send("Inserted the leave")
+    // })
 
-    leave.save((error, data) => {
-        if (error) {
-            return res.send(error)
-        }
-
-        res.send("Inserted the leave")
+    // Using Promise
+    leave.save().then( (_leave) => {
+        res.send(_user)
+    }).catch( (e) => {
+        res.send(e)
     })
 })
 

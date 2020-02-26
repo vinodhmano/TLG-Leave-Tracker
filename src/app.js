@@ -3,11 +3,12 @@ require('./database/dbController')
 const userRouter = require('./routers/userRouter')
 const leaveRouter = require('./routers/leaveRouter')
 const hbs = require('hbs')
+const path = require('path')
 
 const app = express()
-const viewFolder = '/Users/admin/node/TLG-Leave-Tracker/templates/views'
-const partialFolder = '/Users/admin/node/TLG-Leave-Tracker/templates/partials'
-const staticFolder = '/Users/admin/node/TLG-Leave-Tracker/src/utils'
+const viewFolder = path.join(__dirname,'../templates/views')
+const partialFolder = path.join(__dirname,'../templates/partials')
+const staticFolder = path.join(__dirname,'/utils')
 
 app.use(express.static(staticFolder))
 app.use(express.json())
@@ -34,3 +35,5 @@ app.post('/test', (req,res) => {
 app.listen(4444, () => {
     console.log('Application is running in port 4444')
 })
+
+console.log(__dirname)

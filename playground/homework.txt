@@ -1,3 +1,6 @@
+Varun
 1. Write code in '/test/' endpoint in leaveRouter to console print the text box values in index page
 2. Save the leave data in database
-3. Write code for '/login' endpoint in userRouter
+
+Vinodh
+3. Write code for '/login' endpoint in userRouter. Login with userID. Use JWT (JSON Web Token)

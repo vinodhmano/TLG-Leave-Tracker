@@ -7,7 +7,9 @@ const hbs = require('hbs')
 const app = express()
 const viewFolder = '/Users/admin/node/TLG-Leave-Tracker/templates/views'
 const partialFolder = '/Users/admin/node/TLG-Leave-Tracker/templates/partials'
+const staticFolder = '/Users/admin/node/TLG-Leave-Tracker/src/utils'
 
+app.use(express.static(staticFolder))
 app.use(express.json())
 app.use(userRouter)
 app.use(leaveRouter)

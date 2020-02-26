@@ -1,2 +1,3 @@
-1. Update all leave end points with promises (remove callbacks)
-2. Create a new leave end point to find with id
+1. Write code in '/test/' endpoint in leaveRouter to console print the text box values in index page
+2. Save the leave data in database
+3. Write code for '/login' endpoint in userRouter

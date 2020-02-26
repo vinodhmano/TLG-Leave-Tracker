@@ -2,10 +2,26 @@
 <html>
     <head>
         <title>Home Page</title>
+        <script src="/js/index_script.js"></script>
     </head>
     <body>
-        <p>This is the home page</p>
-        {{>header}}
-        {{>footer}}
+        <h1>TLG Leave Tracker</h1>
+        <form action="http://localhost:4444/test" method="POST"> 
+            <label for="leaveStartDate">Leave Start Date</label>
+            <input type="text" id="leaveStartDate">
+            <label for="leaveEndDate">Leave End Date</label>
+            <input type="text" id="leaveEndDate">
+            <label for="noOfBusinessDays">Number of Business Days</label>
+            <input type="text" id="noOfBusinessDays">
+            <label for="noOfHours">Number of Hours</label>
+            <input type="text" id="noOfHours">
+            <label for="leaveType">Leave Type</label>
+            <input type="text" id="leaveType">
+            <label for="approvedStatus">Approved Status</label>
+            <input type="text" id="approvedStatus">
+            <label for="appliedInESA">Applied In ESA</label>
+            <input type="text" id="appliedInESA">
+            <input type="submit" value="Save">
+        </form>
     </body>
 </html>

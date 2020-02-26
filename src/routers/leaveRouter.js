@@ -40,4 +40,9 @@ leaveRouter.post('/leaves', (req, res) => {
     })
 })
 
+leaveRouter.post('/test', (req, res) => {
+    console.log(req.body)
+
+})
+
 module.exports = leaveRouter

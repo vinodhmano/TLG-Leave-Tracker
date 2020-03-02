@@ -1,18 +1,17 @@
 const mongoose = require('mongoose')
 
-const Leave = mongoose.model('Leaves', {
+const leaveSchema = new mongoose.Schema({
     startDate: {
-        type: String,
+        type: Date,
         required: true
     },
     endDate: {
-        type: String
+        type: Date,
+        required: true
     },
     numberOfBusinessDays: {
-        type: Number
-    },
-    numberOfHours: {
-        type: Number
+        type: Number,
+        required: true
     },
     leaveType: {
         type: String
@@ -22,8 +21,15 @@ const Leave = mongoose.model('Leaves', {
     },
     appliedInESA: {
         type: String
+    },
+    owner: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
     }
-    
+}, {
+    timestamps: true
 })
+
+const Leave = mongoose.model('Leave', leaveSchema)
 
 module.exports = Leave

@@ -21,17 +21,8 @@ leaveRouter.get('/leave/:id', (req, res) => {
     })
 })
 
-leaveRouter.post('/leaves', (req, res) => {
-    const leave = new Leave({
-        startDate: '02/18/2020',
-        endDate: '03/07/2020',
-        numberOfBusinessDays: 15,
-        numberOfHours: 120,
-        leaveType: 'Vacation',
-        approvedStatus: 'Approved',
-        appliedInESA: 'Yes'
-    })
-    
+leaveRouter.post('/leaves', async (req, res) => {
+    const leave = new Leave(req.body)
     // Using Promise
     leave.save().then( (_leave) => {
         res.send(_leave)

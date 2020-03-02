@@ -1,34 +1,57 @@
 const User = require('../models/user')
+const jwt = require('jsonwebtoken')
 const express = require('express')
+
 const userRouter = express.Router()
 
 //Get all user
 userRouter.get('/users', (req, res) => {
-    User.find({}).then( (users)=> {
-        res.send(users)
-    }).catch( (e) => {
-        res.send(e)
-    })
+    try {
+        User.find({}).then( (users)=> {
+            res.send(users)
+        }).catch( (e) => {
+            res.send(e)
+        })    
+    } catch (error) {
+        res.status(500).send(error)
+    }
 })
 
 //Get user by id
 userRouter.get('/users/:id', (req, res) => {
-    const id = req.params.id
-    User.findById(id).then( (user) => {
-        res.send(user)
-    }).catch( (e) => {
-        res.send(e)
-    })
+    try {
+        const id = req.params.id
+        User.findById(id).then( (user) => {
+            res.send(user)
+        }).catch( (e) => {
+            res.send(e)
+    })    
+    } catch (error) {
+        res.status(500).send(error)
+    }
 })
 
 //Create users
-userRouter.post('/users', (req, res) => {
-    const user = new User(req.body)
-    user.save().then( (_user) => {
-        res.send(_user)
-    }).catch( (e) => {
-        res.send(e)
-    })
+userRouter.post('/users', async (req, res) => {
+    try {
+        const user = new User(req.body)
+        await user.save()
+        const token = await user.getAuthToken()
+        res.status(201).send({ user, token })
+    }catch (error) {
+        res.status(500).send(error)
+    }
+})
+
+//Login
+userRouter.post('/users/login', async (req, res) =>{
+    try {
+        const user = await User.findUserByEmpId(req.body.id)
+        const token = await user.getAuthToken()
+        res.send({user, token})
+    } catch (error) {
+        res.status(500).send(error)
+    }
 })
 
 module.exports = userRouter

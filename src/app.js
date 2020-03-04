@@ -2,6 +2,7 @@ const express = require('express')
 require('./database/dbController')
 const userRouter = require('./routers/userRouter')
 const leaveRouter = require('./routers/leaveRouter')
+const Leave = require('./models/leave')
 const hbs = require('hbs')
 const path = require('path')
 
@@ -10,6 +11,7 @@ const viewFolder = path.join(__dirname,'../templates/views')
 const partialFolder = path.join(__dirname,'../templates/partials')
 const staticFolder = path.join(__dirname,'/utils')
 
+app.use(express.urlencoded())
 app.use(express.static(staticFolder))
 app.use(express.json())
 app.use(userRouter)
@@ -28,12 +30,16 @@ app.get('/help', (req, res) => {
     res.render('help')
 })
 
-app.post('/test', (req,res) => {
-    console.log(req.body)
-})
-
 app.listen(4444, () => {
     console.log('Application is running in port 4444')
 })
 
-console.log(__dirname)
+const jwt = require('jsonwebtoken')
+
+const main = () => {
+    const token = jwt.sign({id:144725}, "nobodyknowswhatitis", { expiresIn: "2 days" })
+    const isValid = jwt.verify(token,"nobodyknowswhatitis")
+    console.log(isValid)
+}
+
+main()

@@ -1,6 +1,17 @@
-Varun
-1. Write code in '/test/' endpoint in leaveRouter to console print the text box values in index page
-2. Save the leave data in database
-
 Vinodh
-3. Write code for '/login' endpoint in userRouter. Login with userID. Use JWT (JSON Web Token)
+1. Write code for '/logout'
+
+Varun
+1, Rename the index.bhs to Apply Leave
+1. Write a view for Login page
+    Text for entering user id
+    Login button
+    It should find the user from database using the id entered
+    If user is not found, throw an error || Open the Signup
+    If user is found, navigate to Apply Leave page
+
+2. Write a view for Signup 
+    User First Name
+    Last Name
+    Employee ID
+    Supervisor Name

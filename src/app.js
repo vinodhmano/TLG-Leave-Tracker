@@ -2,6 +2,7 @@ const express = require('express')
 require('./database/dbController')
 const userRouter = require('./routers/userRouter')
 const leaveRouter = require('./routers/leaveRouter')
+const Leave = require('./models/leave')
 const hbs = require('hbs')
 const path = require('path')
 
@@ -10,6 +11,7 @@ const viewFolder = path.join(__dirname,'../templates/views')
 const partialFolder = path.join(__dirname,'../templates/partials')
 const staticFolder = path.join(__dirname,'/utils')
 
+app.use(express.urlencoded())
 app.use(express.static(staticFolder))
 app.use(express.json())
 app.use(userRouter)
@@ -28,9 +30,15 @@ app.get('/help', (req, res) => {
     res.render('help')
 })
 
-app.post('/test', (req,res) => {
-    console.log(req.body)
-})
+app.post('/saveLeave', (req,res) => {
+    console.log(req.body);
+    const leave = new Leave(req.body);
+    leave.save().then( (_leave) => {
+        res.send(_leave)
+    }).catch( (e) => {
+        res.send(e)
+    })
+});
 
 app.listen(4444, () => {
     console.log('Application is running in port 4444')

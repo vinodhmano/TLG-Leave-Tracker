@@ -6,15 +6,13 @@
     </head>
     <body>
         <h1>TLG Leave Tracker</h1>
-        <form action="http://localhost:4444/saveLeave" method="POST"> 
+        <form action="http://localhost:4444/leaves" method="POST"> 
             <label for="leaveStartDate">Leave Start Date</label>
             <input type="text" id="leaveStartDate" name="startDate">
             <label for="leaveEndDate">Leave End Date</label>
             <input type="text" id="leaveEndDate" name="endDate">
             <label for="noOfBusinessDays">Number of Business Days</label>
             <input type="text" id="noOfBusinessDays" name="numberOfBusinessDays">
-            {{!-- <label for="noOfHours">Number of Hours</label>
-            <input type="text" id="noOfHours" name="noOfHours"> --}}
             <label for="leaveType">Leave Type</label>
             <input type="text" id="leaveType" name="leaveType">
             <label for="approvedStatus">Approved Status</label>

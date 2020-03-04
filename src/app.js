@@ -30,18 +30,16 @@ app.get('/help', (req, res) => {
     res.render('help')
 })
 
-app.post('/saveLeave', (req,res) => {
-    console.log(req.body);
-    const leave = new Leave(req.body);
-    leave.save().then( (_leave) => {
-        res.send(_leave)
-    }).catch( (e) => {
-        res.send(e)
-    })
-});
-
 app.listen(4444, () => {
     console.log('Application is running in port 4444')
 })
 
-console.log(__dirname)
+const jwt = require('jsonwebtoken')
+
+const main = () => {
+    const token = jwt.sign({id:144725}, "nobodyknowswhatitis", { expiresIn: "2 days" })
+    const isValid = jwt.verify(token,"nobodyknowswhatitis")
+    console.log(isValid)
+}
+
+main()

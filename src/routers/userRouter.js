@@ -32,11 +32,12 @@ userRouter.get('/users/:id', (req, res) => {
 })
 
 userRouter.post('/loginVerification', (req, res) => {
-    User.findOne({id: req.body.empId},{explicit: true}).then( (x) => {
-        console.log(User.findOne({id: req.body.empId}));
-        res.render('applyLeave');
+    User.findOne({id: req.body.empId}).then( (user) => {
+        if(!user)
+            return res.render('signUp');
+        return res.render('applyLeave');
     }).catch( (e) => {
-        res.render('signUp');
+        console.log(e);
     })
 })
 

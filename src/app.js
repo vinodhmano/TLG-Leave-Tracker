@@ -22,8 +22,16 @@ app.set('views', viewFolder)
 hbs.registerPartials(partialFolder)
 
 
-app.get('/index', (req, res) => {
-    res.render('index')
+app.get('/login', (req, res) => {
+    res.render('login')
+})
+
+app.get('/applyLeave', (req, res) => {
+    res.render('applyLeave')
+})
+
+app.get('/signUp', (req, res) => {
+    res.render('signUp')
 })
 
 app.get('/help', (req, res) => {

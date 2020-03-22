@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Apply Leave Page</title>
+        <script src="/js/index_script.js"></script>
+    </head>
+    <body>
+        <h1>TLG Leave Tracker</h1>
+        <form action="http://localhost:4444/leaves" method="POST">
+            <label for="leaveStartDate">Leave Start Date</label><br>
+            <input type="text" id="leaveStartDate" name="startDate"><br>
+            <label for="leaveEndDate">Leave End Date</label><br>
+            <input type="text" id="leaveEndDate" name="endDate"><br>
+            <label for="noOfBusinessDays">Number of Business Days</label><br>
+            <input type="text" id="noOfBusinessDays" name="numberOfBusinessDays"><br>
+            <label for="leaveType">Leave Type</label><br>
+            <input type="text" id="leaveType" name="leaveType"><br>
+            <label for="approvedStatus">Approved Status</label><br>
+            <input type="text" id="approvedStatus" name="approvedStatus"><br>
+            <label for="appliedInESA">Applied In ESA</label><br>
+            <input type="text" id="appliedInESA" name="appliedInESA"><br><br>
+            <input type="submit" value="Save">
+        </form>
+    </body>
+</html>

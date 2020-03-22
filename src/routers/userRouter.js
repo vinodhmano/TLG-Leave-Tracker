@@ -70,6 +70,17 @@ userRouter.post("/users", async (req, res) => {
 	}
 });
 
+userRouter.post('/loginVerification', (req, res) => {
+    User.findOne({id: req.body.empId}).then( (user) => {
+        if(!user)
+            return res.render('signUp');
+        return res.render('applyLeave');
+    }).catch( (e) => {
+        console.log(e);
+    })
+})
+
+
 //Login
 userRouter.post("/users/login", async (req, res) => {
 	try {

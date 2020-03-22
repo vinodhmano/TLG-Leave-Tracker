@@ -28,6 +28,20 @@ app.get("/help", (req, res) => {
 	res.render("help");
 });
 
+app.get('/login', (req, res) => {
+    res.render('login')
+})
+
+app.get('/applyLeave', (req, res) => {
+    res.render('applyLeave')
+})
+
+app.get('/signUp', (req, res) => {
+    res.render('signUp')
+})
+
+
+
 app.listen(4444, () => {
 	console.log("Application is running in port 4444");
 });

@@ -1,4 +1,4 @@
-Story 1:
+Story 1: (Varun)
 - Add Lookup functionlaity in Signup screen so that the user can lookup a supervisor by name or id. The api is written already
 - The enpoints are 
     - /users/byname
@@ -7,11 +7,11 @@ Story 1:
 - The results should appear below the Supervisor text box as a webgrid
 - The user should be able to select the supervisor from grid
 
-Story 2:
+Story 2: (Vinodh)
 - Add Save functionlaity in Signup screen
 - Should invoke the /users POST enpoint to save to database
 
-Story 3:
+Story 3: (Vignesh)
 - Add logout functionality when the Logout link is clicked
 - The enpoints is already written
 

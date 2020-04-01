@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Login Page</title>
-        <script src="/js/index_script.js"></script>
-    </head>
-    <body>
-        <h1>Employee Login</h1>
-        <form action="http://localhost:4444/logInVerification" method="POST">
-            <label for="empId">Employee Id</label>
-            <input type="text" id="empId" name="empId"><br><br>
-            <input type="submit" value="Login">
-        </form>
-    </body>
+
+<head>
+    <title>Login Page</title>
+    <script src="/js/index_script.js"></script>
+</head>
+
+<body>
+    <h1>Employee Login</h1>
+    <form action="/users/logInVerification" method="POST">
+        <label for="empId">Employee Id</label>
+        <input type="text" id="empId" name="empId"><br><br>
+        <input type="submit" value="Login">
+    </form>
+</body>
+
 </html>

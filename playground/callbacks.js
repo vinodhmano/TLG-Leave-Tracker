@@ -1,7 +1,6 @@
-console.log('Start')
-
-setTimeout(function excelExport(){
-    console.log("Excek Exoirt over");  
-}, 3000);
-
-console.log('End')
+var raw = document.getElementById("template").innerHTML;
+var compiled = Handlebars.compile(raw);
+var data = { name: "Vinodh" };
+var generated = compiled(data);
+var e = document.getElementById("container");
+e.innerHTML = generated;

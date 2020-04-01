@@ -10,7 +10,7 @@ const viewFolder = path.join(__dirname, "../templates/views");
 const partialFolder = path.join(__dirname, "../templates/partials");
 const staticFolder = path.join(__dirname, "/utils");
 
-app.use(express.urlencoded());
+app.use(express.urlencoded({ extended: true }));
 app.use(express.static(staticFolder));
 app.use(express.json());
 app.use(userRouter);
@@ -28,19 +28,17 @@ app.get("/help", (req, res) => {
 	res.render("help");
 });
 
-app.get('/login', (req, res) => {
-    res.render('login')
-})
+app.get("/login", (req, res) => {
+	res.render("login");
+});
 
-app.get('/applyLeave', (req, res) => {
-    res.render('applyLeave')
-})
+app.get("/users/applyLeave", (req, res) => {
+	res.render("applyLeave");
+});
 
-app.get('/signUp', (req, res) => {
-    res.render('signUp')
-})
-
-
+app.get("/users/signup", (req, res) => {
+	res.render("signup");
+});
 
 app.listen(4444, () => {
 	console.log("Application is running in port 4444");

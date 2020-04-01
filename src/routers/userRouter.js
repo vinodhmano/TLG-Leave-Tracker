@@ -22,12 +22,12 @@ userRouter.get("/users", (req, res) => {
 
 userRouter.get("/users/byname", async (req, res) => {
 	try {
-		if (!req.body.name) throw new Error();
+		if (!req.query.name) throw new Error();
 		let fNameMatch = await User.find({
-			firstname: new RegExp(req.body.name, "i")
+			firstname: new RegExp(req.query.name, "i")
 		});
 		let lNameMatch = await User.find({
-			lastname: new RegExp(req.body.name, "i")
+			lastname: new RegExp(req.query.name, "i")
 		});
 		let matched = fNameMatch.concat(lNameMatch);
 		res.send(matched);
@@ -38,8 +38,8 @@ userRouter.get("/users/byname", async (req, res) => {
 
 userRouter.get("/users/byempid", async (req, res) => {
 	try {
-		if (!req.body.id) throw new Error();
-		const user = await User.findOne({ id: parseInt(req.body.id) });
+		if (!req.query.id) throw new Error();
+		const user = await User.findOne({ id: parseInt(req.query.id) });
 		if (!user) {
 			throw new Error();
 		}
@@ -70,16 +70,16 @@ userRouter.post("/users", async (req, res) => {
 	}
 });
 
-userRouter.post('/loginVerification', (req, res) => {
-    User.findOne({id: req.body.empId}).then( (user) => {
-        if(!user)
-            return res.render('signUp');
-        return res.render('applyLeave');
-    }).catch( (e) => {
-        console.log(e);
-    })
-})
-
+userRouter.post("/users/loginVerification", (req, res) => {
+	User.findOne({ id: req.body.empId })
+		.then((user) => {
+			if (!user) return res.redirect("signUp");
+			return res.redirect("applyLeave");
+		})
+		.catch((e) => {
+			console.log(e);
+		});
+});
 
 //Login
 userRouter.post("/users/login", async (req, res) => {

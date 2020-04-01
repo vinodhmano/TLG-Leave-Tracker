@@ -1,0 +1,20 @@
+<div>
+    <table>
+        <tbody>
+            <thead>
+                <th>ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+            </thead>
+            {{#each user}}
+            <tr>
+                <td>{{this.id}}</td>
+                <td>{{this.firstname}}</td>
+                <td>{{this.lastname}}</td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+    <br>
+    <button id='select_user'>Select</button>
+</div>

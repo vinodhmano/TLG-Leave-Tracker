@@ -1,5 +1,17 @@
-2. Write a view for Signup 
-    User First Name
-    Last Name
-    Employee ID
-    Supervisor Name
+Story 1:
+- Add Lookup functionlaity in Signup screen so that the user can lookup a supervisor by name or id. The api is written already
+- The enpoints are 
+    - /users/byname
+    - /users/byempid
+- Search is already working. But it just logs in console
+- The results should appear below the Supervisor text box as a webgrid
+- The user should be able to select the supervisor from grid
+
+Story 2:
+- Add Save functionlaity in Signup screen
+- Should invoke the /users POST enpoint to save to database
+
+Story 3:
+- Add logout functionality when the Logout link is clicked
+- The enpoints is already written
+

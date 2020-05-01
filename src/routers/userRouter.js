@@ -23,10 +23,12 @@ userRouter.get("/users", (req, res) => {
 userRouter.get("/users/byname", async (req, res) => {
 	try {
 		if (!req.query.name) throw new Error();
-		let fNameMatch = await User.find({firstname: new RegExp(req.query.name, "i")
+		let fNameMatch = await User.find({
+			firstname: new RegExp(req.query.name, "i")
 		});
 		console.log(fNameMatch);
-		let lNameMatch = await User.find({lastname: new RegExp(req.query.name, "i")
+		let lNameMatch = await User.find({
+			lastname: new RegExp(req.query.name, "i")
 		});
 		let matched = fNameMatch.concat(lNameMatch);
 		res.send(matched);

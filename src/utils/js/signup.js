@@ -11,7 +11,6 @@ lookup.addEventListener("click", async (e) => {
 		console.info("Its a number");
 		const response = await fetch("/users/byempid?id=" + supervisor_value.value);
 		const data = await response.json();
-		console.log(data);
 		populateResults(data);
 	} else {
 		console.info("Its a string");
@@ -19,7 +18,6 @@ lookup.addEventListener("click", async (e) => {
 			"/users/byname?name=" + supervisor_value.value
 		);
 		const data = await response.json();
-		console.log(data);
 		populateResults(data);
 	}
 });
@@ -32,19 +30,19 @@ function populateResults(data) {
 	// results.innerHTML = generatedHTML;
 
 	var table = document.getElementById("myTable");
-	
-	while(table.rows.length>0) {
+
+	while (table.rows.length > 0) {
 		table.deleteRow(0);
 	}
 
-	for(let j=0; j<data.length; j++) {
+	for (let j = 0; j < data.length; j++) {
 		var row = table.insertRow(j);
 		row.insertCell(0);
 		row.insertCell(1);
 		row.insertCell(2);
 	}
 
-	for(let k=0; k<data.length; k++) {
+	for (let k = 0; k < data.length; k++) {
 		table.rows[k].cells[0].innerHTML = data[k].id;
 		table.rows[k].cells[1].innerHTML = data[k].firstname;
 		table.rows[k].cells[2].innerHTML = data[k].lastname;

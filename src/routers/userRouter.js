@@ -24,10 +24,11 @@ userRouter.get("/users/byname", async (req, res) => {
 	try {
 		if (!req.query.name) throw new Error();
 		let fNameMatch = await User.find({
-			firstname: new RegExp(req.query.name, "i")
+			firstname: new RegExp(req.query.name, "i"),
 		});
+		//console.log(fNameMatch);
 		let lNameMatch = await User.find({
-			lastname: new RegExp(req.query.name, "i")
+			lastname: new RegExp(req.query.name, "i"),
 		});
 		let matched = fNameMatch.concat(lNameMatch);
 		res.send(matched);
@@ -58,7 +59,7 @@ userRouter.get("/users/me", auth, (req, res) => {
 	}
 });
 
-//Create usersa aka signup
+//Create users aka signup
 userRouter.post("/users", async (req, res) => {
 	try {
 		const user = new User(req.body);

@@ -40,7 +40,7 @@ userRouter.get("/users/byname", async (req, res) => {
 userRouter.get("/users/byempid", async (req, res) => {
 	try {
 		if (!req.query.id) throw new Error();
-		const user = await User.findOne({ id: parseInt(req.query.id) });
+		const user = await User.find({ id: parseInt(req.query.id) }); //Replaced findOne to find as we need array for line40&47 in signup.js
 		if (!user) {
 			throw new Error();
 		}

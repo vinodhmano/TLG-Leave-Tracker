@@ -37,14 +37,17 @@ function populateResults(data) {
 
 	for (let j = 0; j < data.length; j++) {
 		var row = table.insertRow(j);
+		row.className = `row-${j}`;
 		row.insertCell(0);
 		row.insertCell(1);
 		row.insertCell(2);
+		row.insertCell(3);
 	}
 
 	for (let k = 0; k < data.length; k++) {
 		table.rows[k].cells[0].innerHTML = data[k].id;
-		table.rows[k].cells[1].innerHTML = data[k].firstname;
-		table.rows[k].cells[2].innerHTML = data[k].lastname;
+		table.rows[k].cells[1].innerHTML = data[k]._id;
+		table.rows[k].cells[2].innerHTML = data[k].firstname;
+		table.rows[k].cells[3].innerHTML = data[k].lastname;
 	}
 }

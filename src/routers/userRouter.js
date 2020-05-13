@@ -87,7 +87,7 @@ userRouter.post("/users/login", async (req, res) => {
 	try {
 		const user = await User.findUserByEmpId(req.body.id);
 		const token = await user.getAuthToken();
-		res.send({ user });
+		res.send({ user, token });
 	} catch (error) {
 		res.status(500).send(error);
 	}

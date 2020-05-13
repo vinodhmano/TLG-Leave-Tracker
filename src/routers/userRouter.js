@@ -96,8 +96,7 @@ userRouter.post("/users/login", async (req, res) => {
 
 //Logout
 userRouter.post("/users/logout", auth, async (req, res) => {
-	try {
-		Console.log("Called");
+	try {		
 		const user = req.user;
 		user.tokens = [];
 		await user.save();

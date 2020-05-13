@@ -4,9 +4,11 @@ const userRouter = require("./routers/userRouter");
 const leaveRouter = require("./routers/leaveRouter");
 const hbs = require("hbs");
 const path = require("path");
-require('dotenv').config({path:__dirname + '/.env'});
 
 const app = express();
+
+const port = process.env.PORT;
+
 const viewFolder = path.join(__dirname, "../templates/views");
 const partialFolder = path.join(__dirname, "../templates/partials");
 const staticFolder = path.join(__dirname, "/utils");
@@ -41,6 +43,6 @@ app.get("/users/signup", (req, res) => {
 	res.render("signup");
 });
 
-app.listen(4444, () => {
-	console.log("Application is running in port 4444");
+app.listen(port, () => {
+	console.log("Application is running in port " + port);
 });

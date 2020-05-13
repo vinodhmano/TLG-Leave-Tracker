@@ -75,6 +75,7 @@ userRouter.post("/users/loginVerification", (req, res) => {
 	User.findOne({ id: req.body.empId })
 		.then((user) => {
 			if (!user) return res.redirect("signUp");
+
 			return res.redirect("applyLeave");
 		})
 		.catch((e) => {
@@ -87,7 +88,7 @@ userRouter.post("/users/login", async (req, res) => {
 	try {
 		const user = await User.findUserByEmpId(req.body.id);
 		const token = await user.getAuthToken();
-		res.send({ user });
+		res.send({ user, token });
 	} catch (error) {
 		res.status(500).send(error);
 	}
@@ -96,6 +97,7 @@ userRouter.post("/users/login", async (req, res) => {
 //Logout
 userRouter.post("/users/logout", auth, async (req, res) => {
 	try {
+		Console.log("Called");
 		const user = req.user;
 		user.tokens = [];
 		await user.save();

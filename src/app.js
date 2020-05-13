@@ -4,6 +4,7 @@ const userRouter = require("./routers/userRouter");
 const leaveRouter = require("./routers/leaveRouter");
 const hbs = require("hbs");
 const path = require("path");
+require('dotenv').config({path:__dirname + '/.env'});
 
 const app = express();
 const viewFolder = path.join(__dirname, "../templates/views");

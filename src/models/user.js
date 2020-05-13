@@ -39,6 +39,7 @@ userSchema.methods.getAuthToken = async function(_id) {
 	});
 	user.tokens = user.tokens.concat({ token });
 	await user.save();
+	process.env['AUTH_TOKEN'] = token;
 	return token;
 };
 

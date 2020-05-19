@@ -25,7 +25,7 @@ leaveRouter.post('/leaves', async (req, res) => {
     const leave = new Leave(req.body)
     // Using Promise
     leave.save().then( (_leave) => {
-        res.send(_leave)
+        res.redirect("users/signUp")
     }).catch( (e) => {
         res.send(e)
     })

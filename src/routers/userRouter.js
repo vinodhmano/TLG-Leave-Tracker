@@ -65,7 +65,7 @@ userRouter.post("/users", async (req, res) => {
 		const user = new User(req.body);
 		await user.save();
 		const token = await user.getAuthToken();
-		res.status(201).send({ user, token });
+		return res.redirect("users/applyLeave");
 	} catch (error) {
 		res.status(500).send(error);
 	}

@@ -17,7 +17,8 @@ const userSchema = new mongoose.Schema(
 		},
 		supervisor: {
 			type: mongoose.Schema.Types.ObjectId,
-			ref: "User"
+			ref: "User",
+			required: false
 		},
 		tokens: [
 			{

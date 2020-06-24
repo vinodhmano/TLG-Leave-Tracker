@@ -100,7 +100,8 @@ userRouter.post("/users/logout", auth, async (req, res) => {
 		const user = req.user;
 		user.tokens = [];
 		await user.save();
-		res.send();
+		process.env.AUTH_TOKEN = "";
+		res.redirect("../login");
 	} catch (error) {
 		res.status(500);
 		console.log(error);
